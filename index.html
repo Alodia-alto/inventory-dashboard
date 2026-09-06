@@ -385,4 +385,172 @@
 
 </body>
 
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Product Inventory Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header>
+            <h1>📦 Product Inventory Dashboard</h1>
+            <p>Manage and search your products easily.</p>
+        </header>
+
+
+        <!-- SUMMARY -->
+        <section class="summary">
+
+            <div class="summary-card">
+                <div class="icon">💰</div>
+
+                <div>
+                    <h3>Total Inventory Value</h3>
+                    <p id="totalInventoryValue">₱0</p>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="icon">📦</div>
+
+                <div>
+                    <h3>Low-Stock Products</h3>
+                    <p id="lowStockCount">0</p>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="icon">⚠️</div>
+
+                <div>
+                    <h3>Out-of-Stock Products</h3>
+                    <p id="outOfStockCount">0</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+        <section class="search-section">
+
+            <h2>🔎 Find a Product</h2>
+
+            <div class="search-area">
+
+                <div class="input-group">
+                    <label for="searchInput">
+                        Search Product
+                    </label>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Enter product name"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="categoryFilter">
+                        Category
+                    </label>
+
+                    <select id="categoryFilter">
+
+                        <option value="All">All</option>
+
+                        <option value="Accessories">
+                            Accessories
+                        </option>
+
+                        <option value="Displays">
+                            Displays
+                        </option>
+
+                        <option value="Storage">
+                            Storage
+                        </option>
+
+                        <option value="Components">
+                            Components
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <button id="searchBtn">
+                    🔎 Search
+                </button>
+
+
+                <button id="resetBtn">
+                    ↻ Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCT LIST -->
+        <section class="products-section">
+
+            <h2>Our Products ♡</h2>
+
+            <p class="subtitle">
+                Browse and monitor your available products.
+            </p>
+
+
+            <!-- No results -->
+            <p
+                id="noResultsMessage"
+                class="no-results"
+                style="display: none;"
+            >
+                No products found
+            </p>
+
+
+            <!-- Products will appear here -->
+            <div id="productList"></div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            <p>♡ Product Inventory Dashboard</p>
+            <p>ITP10 • Event-Driven Programming</p>
+        </footer>
+
+    </div>
+
+
+    <!-- IMPORTANT: MODULE -->
+    <script
+        type="module"
+        src="js/main.js"
+    ></script>
+
+</body>
+
 </html>
