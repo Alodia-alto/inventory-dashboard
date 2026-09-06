@@ -13,12 +13,11 @@
 
     <main class="container">
 
-        <!-- Header -->
         <header class="hero">
-            <div class="sparkle sparkle-one">✦</div>
-            <div class="sparkle sparkle-two">♡</div>
+            <div class="decor decor-left">✦</div>
+            <div class="decor decor-right">♡</div>
 
-            <div class="icon">🛍️</div>
+            <div class="logo">🛍️</div>
 
             <p class="eyebrow">
                 ITP10 • EVENT-DRIVEN PROGRAMMING
@@ -27,53 +26,64 @@
             <h1>Product Inventory Dashboard</h1>
 
             <p class="subtitle">
-                A simple and cute way to manage your product inventory ♡
+                Manage your products easily and cutely ♡
             </p>
         </header>
 
 
-        <!-- Summary -->
-        <section class="summary">
+        <!-- INVENTORY SUMMARY -->
 
-            <article class="summary-card">
+        <section class="summary" aria-label="Inventory Summary">
 
-                <span class="summary-icon">💰</span>
+            <div class="summary-card">
+
+                <div class="summary-icon">💰</div>
 
                 <div>
                     <p>Total Inventory Value</p>
-                    <h2 id="totalInventoryValue">₱0.00</h2>
+
+                    <h2 id="totalInventoryValue">
+                        ₱0.00
+                    </h2>
                 </div>
 
-            </article>
+            </div>
 
 
-            <article class="summary-card">
+            <div class="summary-card">
 
-                <span class="summary-icon">📦</span>
+                <div class="summary-icon">📦</div>
 
                 <div>
                     <p>Low-Stock Products</p>
-                    <h2 id="lowStockCount">0</h2>
+
+                    <h2 id="lowStockCount">
+                        0
+                    </h2>
                 </div>
 
-            </article>
+            </div>
 
 
-            <article class="summary-card">
+            <div class="summary-card">
 
-                <span class="summary-icon">⚠️</span>
+                <div class="summary-icon">⚠️</div>
 
                 <div>
                     <p>Out-of-Stock Products</p>
-                    <h2 id="outOfStockCount">0</h2>
+
+                    <h2 id="outOfStockCount">
+                        0
+                    </h2>
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
 
-        <!-- Search and Filter -->
+        <!-- SEARCH AND FILTER -->
+
         <section class="controls">
 
             <div class="field">
@@ -86,7 +96,6 @@
                     type="text"
                     id="searchInput"
                     placeholder="Enter product name"
-                    autocomplete="off"
                 >
 
             </div>
@@ -100,7 +109,9 @@
 
                 <select id="categoryFilter">
 
-                    <option value="All">All</option>
+                    <option value="All">
+                        All
+                    </option>
 
                     <option value="Accessories">
                         Accessories
@@ -123,12 +134,12 @@
             </div>
 
 
-            <div class="button-group">
+            <div class="buttons">
 
                 <button
                     type="button"
                     id="searchBtn"
-                    class="btn primary"
+                    class="btn search-btn"
                 >
                     🔎 Search
                 </button>
@@ -136,7 +147,7 @@
                 <button
                     type="button"
                     id="resetBtn"
-                    class="btn secondary"
+                    class="btn reset-btn"
                 >
                     ↻ Reset
                 </button>
@@ -146,10 +157,11 @@
         </section>
 
 
-        <!-- Product List -->
+        <!-- PRODUCT LIST -->
+
         <section class="products-section">
 
-            <div class="section-heading">
+            <div class="section-title">
 
                 <div>
 
@@ -163,14 +175,13 @@
 
                 </div>
 
-                <span class="cute-badge">
-                    Stay organized ✨
+                <span class="badge">
+                    6 Products ✨
                 </span>
 
             </div>
 
 
-            <!-- Required no-results message -->
             <p
                 id="noResultsMessage"
                 class="no-results"
@@ -179,7 +190,6 @@
             </p>
 
 
-            <!-- Required product list -->
             <div
                 id="productList"
                 class="product-list"
@@ -188,15 +198,17 @@
         </section>
 
 
-        <!-- Footer -->
         <footer>
-            <p>Made with ♡ by Alodiaz</p>
+            <p>
+                Made with ♡ by Alodiaz
+            </p>
         </footer>
 
     </main>
 
 
-    <!-- Main JavaScript Module -->
+    <!-- IMPORTANT: MODULE SCRIPT -->
+
     <script
         type="module"
         src="main.js"
