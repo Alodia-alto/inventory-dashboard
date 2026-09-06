@@ -1,68 +1,62 @@
-// main.js
-// Main module: wires everything together. Imports data, utility
-// functions, and display functions, then coordinates events.
-
 import { products } from "./products.js";
+
 import {
-  searchProducts,
-  filterProductsByCategory,
-  calculateTotalInventoryValue,
-  countLowStockProducts,
-  countOutOfStockProducts,
+    searchProducts,
+    filterProductsByCategory
 } from "./inventoryUtils.js";
-import { displayProducts, displaySummary } from "./display.js";
 
-// Required DOM elements
-const searchInput = document.getElementById("searchInput");
-const categoryFilter = document.getElementById("categoryFilter");
-const searchBtn = document.getElementById("searchBtn");
-const resetBtn = document.getElementById("resetBtn");
+import {
+    displayProducts,
+    displaySummary
+} from "./display.js";
 
-/**
- * Apply the current search query and category filter to the full
- * product list, then re-render the product cards.
- */
-function updateProductView() {
-  const query = searchInput.value;
-  const category = categoryFilter.value;
 
-  let result = filterProductsByCategory(products, category);
-  result = searchProducts(result, query);
+// Get HTML elements
+const searchInput =
+    document.getElementById("searchInput");
 
-  displayProducts(result);
-}
+const categoryFilter =
+    document.getElementById("categoryFilter");
 
-/**
- * Recalculate and display the summary values (these always reflect
- * the full inventory, not the filtered view).
- */
-function updateSummary() {
-  displaySummary({
-    total: calculateTotalInventoryValue(products),
-    lowStock: countLowStockProducts(products),
-    outOfStock: countOutOfStockProducts(products),
-  });
-}
+const searchBtn =
+    document.getElementById("searchBtn");
 
-function resetFilters() {
-  searchInput.value = "";
-  categoryFilter.value = "All";
-  updateProductView();
-}
+const resetBtn =
+    document.getElementById("resetBtn");
 
-searchBtn.addEventListener("click", updateProductView);
-resetBtn.addEventListener("click", resetFilters);
 
-// Allow pressing Enter in the search box to trigger a search
-searchInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    updateProductView();
-  }
+// Display products when page loads
+displayProducts(products);
+displaySummary(products);
+
+
+// SEARCH BUTTON
+searchBtn.addEventListener("click", function () {
+
+    const query = searchInput.value.trim();
+
+    const category = categoryFilter.value;
+
+    // First search by name
+    let results = searchProducts(products, query);
+
+    // Then filter by category
+    results = filterProductsByCategory(results, category);
+
+    // Display results
+    displayProducts(results);
 });
 
-// Live filtering when the category dropdown changes
-categoryFilter.addEventListener("change", updateProductView);
 
-// Initial page load: show all products and the initial summary values
-updateProductView();
-updateSummary();
+// RESET BUTTON
+resetBtn.addEventListener("click", function () {
+
+    // Clear search box
+    searchInput.value = "";
+
+    // Set category back to All
+    categoryFilter.value = "All";
+
+    // Display all products
+    displayProducts(products);
+});
