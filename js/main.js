@@ -12,6 +12,7 @@ import {
 
 
 // Get HTML elements
+
 const searchInput =
     document.getElementById("searchInput");
 
@@ -25,38 +26,60 @@ const resetBtn =
     document.getElementById("resetBtn");
 
 
-// Display products when page loads
+// Display all products when page loads
+
 displayProducts(products);
 displaySummary(products);
 
 
 // SEARCH BUTTON
+
 searchBtn.addEventListener("click", function () {
 
     const query = searchInput.value.trim();
 
     const category = categoryFilter.value;
 
-    // First search by name
-    let results = searchProducts(products, query);
 
-    // Then filter by category
-    results = filterProductsByCategory(results, category);
+    // Search by product name
+
+    let results = searchProducts(
+        products,
+        query
+    );
+
+
+    // Filter by category
+
+    results = filterProductsByCategory(
+        results,
+        category
+    );
+
 
     // Display results
+
     displayProducts(results);
+
 });
 
 
 // RESET BUTTON
+
 resetBtn.addEventListener("click", function () {
 
-    // Clear search box
+    // Clear search
+
     searchInput.value = "";
 
-    // Set category back to All
+
+    // Reset category
+
     categoryFilter.value = "All";
 
-    // Display all products
+
+    // Show all products
+
     displayProducts(products);
+
 });
