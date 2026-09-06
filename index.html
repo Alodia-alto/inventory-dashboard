@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Inventory Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <p class="site-header__eyebrow">ITP10 — Event-Driven Programming</p>
+      <h1 class="site-header__title">Product Inventory Dashboard</h1>
+      <p class="site-header__subtitle">Search, filter, and track stock across the catalog.</p>
+    </div>
+  </header>
+
+  <main class="dashboard">
+
+    <section class="summary" aria-label="Inventory summary">
+      <div class="summary__card summary__card--value">
+        <span class="summary__label">Total Inventory Value</span>
+        <span class="summary__figure" id="totalInventoryValue">₱0</span>
+      </div>
+      <div class="summary__card summary__card--low">
+        <span class="summary__label">Low-Stock Products</span>
+        <span class="summary__figure" id="lowStockCount">0</span>
+      </div>
+      <div class="summary__card summary__card--out">
+        <span class="summary__label">Out-of-Stock Products</span>
+        <span class="summary__figure" id="outOfStockCount">0</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Search and filter controls">
+      <div class="controls__field">
+        <label for="searchInput">Search by name</label>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter product name"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="controls__field">
+        <label for="categoryFilter">Category</label>
+        <select id="categoryFilter">
+          <option value="All">All</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Displays">Displays</option>
+          <option value="Storage">Storage</option>
+          <option value="Components">Components</option>
+        </select>
+      </div>
+
+      <div class="controls__actions">
+        <button type="button" id="searchBtn">Search</button>
+        <button type="button" id="resetBtn" class="btn-secondary">Reset</button>
+      </div>
+    </section>
+
+    <section class="results" aria-label="Product results">
+      <p id="noResultsMessage" class="no-results" style="display: none;">No products found</p>
+      <div id="productList" class="product-list"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Laboratory Activity #4 — Modular JavaScript Application</p>
+    <p>Created by an IT student · Universidad de Dagupan, School of Information Technology Education</p>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
