@@ -1,21 +1,30 @@
-// Search products by name
-// Search is case-insensitive.
+// ========================================
+// SEARCH PRODUCTS
+// ========================================
 
 export function searchProducts(products, query) {
 
     const searchQuery =
-        query.trim().toLowerCase();
+        String(query)
+            .trim()
+            .toLowerCase();
 
-    return products.filter(
-        ({ name }) =>
-            name
-                .toLowerCase()
-                .includes(searchQuery)
-    );
+    return products.filter(function (product) {
+
+        const { name } = product;
+
+        return name
+            .toLowerCase()
+            .includes(searchQuery);
+
+    });
+
 }
 
 
-// Filter products by category
+// ========================================
+// FILTER BY CATEGORY
+// ========================================
 
 export function filterProductsByCategory(
     products,
@@ -26,14 +35,22 @@ export function filterProductsByCategory(
         return products;
     }
 
-    return products.filter(
-        ({ category: productCategory }) =>
-            productCategory === category
-    );
+    return products.filter(function (product) {
+
+        const {
+            category: productCategory
+        } = product;
+
+        return productCategory === category;
+
+    });
+
 }
 
 
-// Determine stock status
+// ========================================
+// GET STOCK STATUS
+// ========================================
 
 export function getStockStatus(stock) {
 
@@ -41,56 +58,80 @@ export function getStockStatus(stock) {
         return "Out of Stock";
     }
 
-    if (
-        stock >= 1 &&
-        stock <= 5
-    ) {
+    if (stock >= 1 && stock <= 5) {
         return "Low Stock";
     }
 
     return "In Stock";
+
 }
 
 
-// Calculate total inventory value
+// ========================================
+// CALCULATE TOTAL INVENTORY VALUE
+// ========================================
 
 export function calculateTotalInventoryValue(
     products
 ) {
 
     return products.reduce(
-        (
-            total,
-            { price, stock }
-        ) => total + (price * stock),
+        function (total, product) {
 
+            const {
+                price,
+                stock
+            } = product;
+
+            return total + (price * stock);
+
+        },
         0
     );
+
 }
 
 
-// Count low-stock products
+// ========================================
+// COUNT LOW-STOCK PRODUCTS
+// ========================================
 
 export function countLowStockProducts(
     products
 ) {
 
     return products.filter(
-        ({ stock }) =>
-            stock >= 1 &&
-            stock <= 5
+        function (product) {
+
+            const { stock } = product;
+
+            return (
+                stock >= 1 &&
+                stock <= 5
+            );
+
+        }
     ).length;
+
 }
 
 
-// Count out-of-stock products
+// ========================================
+// COUNT OUT-OF-STOCK PRODUCTS
+// ========================================
 
 export function countOutOfStockProducts(
     products
 ) {
 
     return products.filter(
-        ({ stock }) =>
-            stock === 0
+        function (product) {
+
+            const { stock } = product;
+
+            return stock === 0;
+
+        }
     ).length;
+
 }
