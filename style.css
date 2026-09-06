@@ -1,0 +1,337 @@
+/* style.css
+   Pink-themed styling for the Product Inventory Dashboard.
+   Palette:
+     --pink-bg      #FFF3F8  page background
+     --pink-surface #FFFFFF  card / surface background
+     --pink-soft    #FBD8E7  soft accent fills
+     --pink-strong  #C6316B  primary accent (buttons, figures)
+     --plum-text    #3A1F2E  primary text
+     --plum-muted   #8C6B78  secondary text
+*/
+
+:root {
+  --pink-bg: #fff3f8;
+  --pink-surface: #ffffff;
+  --pink-soft: #fbd8e7;
+  --pink-strong: #c6316b;
+  --pink-strong-dark: #a5215a;
+  --plum-text: #3a1f2e;
+  --plum-muted: #8c6b78;
+  --border-soft: #f3c4dc;
+
+  --status-in-bg: #e4f5ea;
+  --status-in-text: #1f7a4d;
+  --status-low-bg: #fdecd2;
+  --status-low-text: #a15c07;
+  --status-out-bg: #fbdde3;
+  --status-out-text: #ad1f47;
+
+  --radius-md: 14px;
+  --radius-sm: 8px;
+  --shadow-card: 0 6px 18px rgba(198, 49, 107, 0.08);
+
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pink-bg);
+  color: var(--plum-text);
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  margin: 0;
+}
+
+button, input, select {
+  font-family: inherit;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: linear-gradient(135deg, var(--pink-strong) 0%, #e15e8d 60%, #f2a0bf 100%);
+  padding: 2.75rem 1.5rem 3.25rem;
+  color: #fff;
+}
+
+.site-header__inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-header__eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.site-header__title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 600;
+}
+
+.site-header__subtitle {
+  margin: 0.6rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 46ch;
+}
+
+/* ---------- Layout ---------- */
+
+.dashboard {
+  max-width: 960px;
+  margin: -1.75rem auto 0;
+  padding: 0 1.5rem 3rem;
+}
+
+/* ---------- Summary cards ---------- */
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary__card {
+  background: var(--pink-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 4px solid var(--pink-strong);
+}
+
+.summary__card--low {
+  border-top-color: #d98a2a;
+}
+
+.summary__card--out {
+  border-top-color: #ad1f47;
+}
+
+.summary__label {
+  font-size: 0.85rem;
+  color: var(--plum-muted);
+}
+
+.summary__figure {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--plum-text);
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  background: var(--pink-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.controls__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1 1 200px;
+}
+
+.controls__field label {
+  font-size: 0.85rem;
+  color: var(--plum-muted);
+}
+
+.controls__field input,
+.controls__field select {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--plum-text);
+  background: #fffafc;
+}
+
+.controls__field input:focus,
+.controls__field select:focus,
+button:focus-visible {
+  outline: 3px solid #f2a0bf;
+  outline-offset: 1px;
+}
+
+.controls__actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#searchBtn {
+  background: var(--pink-strong);
+  color: #fff;
+}
+
+#searchBtn:hover {
+  background: var(--pink-strong-dark);
+}
+
+.btn-secondary {
+  background: var(--pink-soft);
+  color: var(--pink-strong-dark);
+}
+
+.btn-secondary:hover {
+  background: #f6c2da;
+}
+
+/* ---------- Results ---------- */
+
+.no-results {
+  text-align: center;
+  color: var(--plum-muted);
+  background: var(--pink-surface);
+  border: 1px dashed var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 2rem 1rem;
+  font-size: 1rem;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  background: var(--pink-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.product-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.product-card__name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.product-card__status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.product-card__status--in-stock {
+  background: var(--status-in-bg);
+  color: var(--status-in-text);
+}
+
+.product-card__status--low-stock {
+  background: var(--status-low-bg);
+  color: var(--status-low-text);
+}
+
+.product-card__status--out-of-stock {
+  background: var(--status-out-bg);
+  color: var(--status-out-text);
+}
+
+.product-card__category {
+  margin: 0;
+  color: var(--plum-muted);
+  font-size: 0.85rem;
+}
+
+.product-card__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.3rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.product-card__price {
+  font-weight: 700;
+  color: var(--pink-strong-dark);
+}
+
+.product-card__stock {
+  font-size: 0.85rem;
+  color: var(--plum-muted);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  text-align: center;
+  color: var(--plum-muted);
+  font-size: 0.85rem;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.site-footer p {
+  margin: 0.2rem 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls__actions {
+    justify-content: stretch;
+  }
+
+  .controls__actions button {
+    flex: 1;
+  }
+}
