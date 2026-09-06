@@ -6,23 +6,27 @@ import {
 } from "./inventoryUtils.js";
 
 
-// Format currency only for display
+// ========================================
+// FORMAT CURRENCY
+// ========================================
 
-const formatCurrency = (value) => {
+function formatCurrency(value) {
 
-    return new Intl.NumberFormat(
-        "en-PH",
-        {
-            style: "currency",
-            currency: "PHP",
-            minimumFractionDigits: 2
-        }
-    ).format(value);
+    return "₱" +
+        Number(value).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
 
-};
+}
 
 
-// Display product cards
+// ========================================
+// DISPLAY PRODUCTS
+// ========================================
 
 export function displayProducts(products) {
 
@@ -37,7 +41,7 @@ export function displayProducts(products) {
         );
 
 
-    // Clear old cards
+    // Clear existing products
 
     productList.innerHTML = "";
 
@@ -57,11 +61,9 @@ export function displayProducts(products) {
         "none";
 
 
-    // Required forEach loop
+    // Display every product
 
-    products.forEach((product) => {
-
-        // Required object destructuring
+    products.forEach(function (product) {
 
         const {
             id,
@@ -76,21 +78,8 @@ export function displayProducts(products) {
             getStockStatus(stock);
 
 
-        const statusClass =
-            status
-                .toLowerCase()
-                .replaceAll(
-                    " ",
-                    "-"
-                );
-
-
-        // Create product card
-
         const card =
-            document.createElement(
-                "article"
-            );
+            document.createElement("div");
 
 
         card.className =
@@ -99,6 +88,30 @@ export function displayProducts(products) {
 
         card.dataset.id = id;
 
+
+        // Determine CSS class
+
+        let statusClass =
+            "in-stock";
+
+
+        if (status === "Low Stock") {
+
+            statusClass =
+                "low-stock";
+
+        }
+        else if (
+            status === "Out of Stock"
+        ) {
+
+            statusClass =
+                "out-of-stock";
+
+        }
+
+
+        // Create product card
 
         card.innerHTML = `
 
@@ -132,7 +145,9 @@ export function displayProducts(products) {
                         Price
                     </span>
 
-                    <span class="info-value price">
+                    <span
+                        class="info-value price"
+                    >
                         ${formatCurrency(price)}
                     </span>
 
@@ -176,15 +191,39 @@ export function displayProducts(products) {
 }
 
 
-// Display inventory summary
+// ========================================
+// DISPLAY TOTAL INVENTORY VALUE
+// ========================================
 
-export function displaySummary(products) {
+export function displayTotalInventoryValue(
+    products
+) {
 
     const totalInventoryValue =
         document.getElementById(
             "totalInventoryValue"
         );
 
+
+    const total =
+        calculateTotalInventoryValue(
+            products
+        );
+
+
+    totalInventoryValue.textContent =
+        formatCurrency(total);
+
+}
+
+
+// ========================================
+// DISPLAY STOCK COUNTS
+// ========================================
+
+export function displayStockCounts(
+    products
+) {
 
     const lowStockCount =
         document.getElementById(
@@ -198,14 +237,6 @@ export function displaySummary(products) {
         );
 
 
-    totalInventoryValue.textContent =
-        formatCurrency(
-            calculateTotalInventoryValue(
-                products
-            )
-        );
-
-
     lowStockCount.textContent =
         countLowStockProducts(
             products
@@ -216,5 +247,25 @@ export function displaySummary(products) {
         countOutOfStockProducts(
             products
         );
+
+}
+
+
+// ========================================
+// DISPLAY SUMMARY
+// ========================================
+
+export function displaySummary(
+    products
+) {
+
+    displayTotalInventoryValue(
+        products
+    );
+
+
+    displayStockCounts(
+        products
+    );
 
 }
