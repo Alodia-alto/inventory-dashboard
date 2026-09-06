@@ -1,29 +1,58 @@
-import { getStockStatus } from "./inventoryUtils.js";
+import {
+    getStockStatus,
+    calculateTotalInventoryValue,
+    countLowStockProducts,
+    countOutOfStockProducts
+} from "./inventoryUtils.js";
 
 
-// Display products
 export function displayProducts(products) {
 
-    const productList = document.getElementById("productList");
-    const noResultsMessage = document.getElementById("noResultsMessage");
+    const productList =
+        document.getElementById("productList");
 
-    // Clear old products
+    const noResultsMessage =
+        document.getElementById("noResultsMessage");
+
+    const productCount =
+        document.getElementById("productCount");
+
+
+    // Clear current products
+
     productList.innerHTML = "";
 
-    // If there are no products
+
+    // No products found
+
     if (products.length === 0) {
-        noResultsMessage.textContent = "No products found";
+
         noResultsMessage.style.display = "block";
+
+        productCount.querySelector("strong").textContent =
+            "0 Products";
+
         return;
     }
 
+
     // Hide no-results message
+
     noResultsMessage.style.display = "none";
 
-    // Display every product
+
+    // Update product count
+
+    productCount.querySelector("strong").textContent =
+        `${products.length} Products`;
+
+
+    // Display products
+
     products.forEach(product => {
 
         // Object destructuring
+
         const {
             id,
             name,
@@ -32,69 +61,110 @@ export function displayProducts(products) {
             stock
         } = product;
 
-        const status = getStockStatus(stock);
 
-        const card = document.createElement("div");
+        const status =
+            getStockStatus(stock);
 
-        card.className = "product-card";
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "product-card";
+
 
         card.innerHTML = `
-            <div class="product-icon">📦</div>
+
+            <div class="product-icon">
+                📦
+            </div>
 
             <div class="product-info">
-                <h3>${name}</h3>
-                <p class="category">${category}</p>
-                <p>Product ID: ${id}</p>
+
+                <h3>
+                    ${name}
+                </h3>
+
+                <p class="category">
+                    ${category}
+                </p>
+
+                <p>
+                    Product ID: ${id}
+                </p>
+
             </div>
 
             <div class="product-details">
-                <p class="price">₱${price.toLocaleString()}</p>
-                <p>Stock: ${stock}</p>
+
+                <p class="price">
+                    ₱${price.toLocaleString()}
+                </p>
+
+                <p>
+                    Stock: ${stock}
+                </p>
+
                 <span class="status ${status
                     .toLowerCase()
                     .replaceAll(" ", "-")}">
+
                     ${status}
+
                 </span>
+
             </div>
+
         `;
 
+
         productList.appendChild(card);
+
     });
+
 }
 
 
-// Display summary
 export function displaySummary(products) {
 
     const totalInventoryValue =
-        document.getElementById("totalInventoryValue");
+        document.getElementById(
+            "totalInventoryValue"
+        );
 
     const lowStockCount =
-        document.getElementById("lowStockCount");
+        document.getElementById(
+            "lowStockCount"
+        );
 
     const outOfStockCount =
-        document.getElementById("outOfStockCount");
+        document.getElementById(
+            "outOfStockCount"
+        );
 
 
-    const totalValue = products.reduce(
-        (total, product) =>
-            total + (product.price * product.stock),
-        0
-    );
+    const total =
+        calculateTotalInventoryValue(products);
 
-    const lowStock = products.filter(product =>
-        product.stock >= 1 && product.stock <= 5
-    ).length;
 
-    const outOfStock = products.filter(product =>
-        product.stock === 0
-    ).length;
+    const lowStock =
+        countLowStockProducts(products);
+
+
+    const outOfStock =
+        countOutOfStockProducts(products);
 
 
     totalInventoryValue.textContent =
-        `₱${totalValue.toLocaleString()}`;
+        `₱${total.toLocaleString()}`;
 
-    lowStockCount.textContent = lowStock;
 
-    outOfStockCount.textContent = outOfStock;
+    lowStockCount.textContent =
+        lowStock;
+
+
+    outOfStockCount.textContent =
+        outOfStock;
+
 }
