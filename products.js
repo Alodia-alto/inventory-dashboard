@@ -48,4 +48,4 @@ export const products = [
         stock: 4
     }
 
-];
+]
