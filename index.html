@@ -1,346 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Product Inventory Dashboard</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Inventory Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-
-    <main class="container">
-
-        <!-- HEADER -->
-        <header class="hero">
-
-            <div class="hero-decoration decoration-one">
-                ✦
-            </div>
-
-            <div class="hero-decoration decoration-two">
-                ♡
-            </div>
-
-            <div class="logo">
-                🛍️
-            </div>
-
-            <p class="eyebrow">
-                ITP10 • EVENT-DRIVEN PROGRAMMING
-            </p>
-
-            <h1>
-                Product Inventory
-                <span>Dashboard</span>
-            </h1>
-
-            <p class="subtitle">
-                Manage your products easily and cutely ♡
-            </p>
-
-            <div class="hero-badge">
-                ✨ Simple • Organized • Efficient
-            </div>
-
-        </header>
-
-
-        <!-- SUMMARY -->
-        <section class="summary">
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    💰
-                </div>
-
-                <div class="summary-content">
-                    <p>Total Inventory Value</p>
-
-                    <h2 id="totalInventoryValue">
-                        ₱0.00
-                    </h2>
-
-                    <span>
-                        Current stock value
-                    </span>
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    📦
-                </div>
-
-                <div class="summary-content">
-                    <p>Low-Stock Products</p>
-
-                    <h2 id="lowStockCount">
-                        0
-                    </h2>
-
-                    <span>
-                        Needs attention
-                    </span>
-                </div>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <div class="summary-icon">
-                    ⚠️
-                </div>
-
-                <div class="summary-content">
-                    <p>Out-of-Stock Products</p>
-
-                    <h2 id="outOfStockCount">
-                        0
-                    </h2>
-
-                    <span>
-                        Currently unavailable
-                    </span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SEARCH -->
-        <section class="controls">
-
-            <div class="controls-heading">
-
-                <div>
-                    <p class="section-label">
-                        INVENTORY MANAGEMENT
-                    </p>
-
-                    <h2>
-                        Find a Product 🔎
-                    </h2>
-                </div>
-
-                <span class="status-badge">
-                    ● Live Inventory
-                </span>
-
-            </div>
-
-
-            <div class="control-fields">
-
-                <!-- SEARCH INPUT -->
-                <div class="field">
-
-                    <label for="searchInput">
-                        Search Product
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">
-                            🔎
-                        </span>
-
-                        <input
-                            type="text"
-                            id="searchInput"
-                            placeholder="Enter product name"
-                            autocomplete="off"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- CATEGORY -->
-                <div class="field">
-
-                    <label for="categoryFilter">
-                        Category
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">
-                            🏷️
-                        </span>
-
-                        <select id="categoryFilter">
-
-                            <option value="All">
-                                All
-                            </option>
-
-                            <option value="Accessories">
-                                Accessories
-                            </option>
-
-                            <option value="Displays">
-                                Displays
-                            </option>
-
-                            <option value="Storage">
-                                Storage
-                            </option>
-
-                            <option value="Components">
-                                Components
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BUTTONS -->
-                <div class="buttons">
-
-                    <button
-                        type="button"
-                        id="searchBtn"
-                        class="search-btn"
-                    >
-                        🔎 Search
-                    </button>
-
-                    <button
-                        type="button"
-                        id="resetBtn"
-                        class="reset-btn"
-                    >
-                        ↻ Reset
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PRODUCTS -->
-        <section class="products-section">
-
-            <div class="section-title">
-
-                <div>
-
-                    <p class="section-label">
-                        OUR PRODUCTS
-                    </p>
-
-                    <h2>
-                        Inventory List ♡
-                    </h2>
-
-                    <p class="section-description">
-                        Browse and monitor your available products.
-                    </p>
-
-                </div>
-
-
-                <div
-                    class="product-count"
-                    id="productCount"
-                >
-                    <span>📦</span>
-
-                    <strong>
-                        6 Products
-                    </strong>
-
-                    <span>✨</span>
-                </div>
-
-            </div>
-
-
-            <!-- NO RESULTS -->
-
-            <div
-                id="noResultsMessage"
-                class="no-results"
-                style="display: none;"
-            >
-
-                <div class="no-results-icon">
-                    🔍
-                </div>
-
-                <h3>
-                    No products found
-                </h3>
-
-                <p>
-                    Try searching for another product or category.
-                </p>
-
-            </div>
-
-
-            <!-- PRODUCT LIST -->
-
-            <div
-                id="productList"
-                class="product-list"
-            ></div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <div class="footer-heart">
-                ♡
-            </div>
-
-            <p>
-                Made with <strong>♡</strong> by Alodiaz
-            </p>
-
-            <span>
-                ITP10 • Event-Driven Programming
-            </span>
-
-        </footer>
-
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Product Inventory Dashboard</h1>
+    </header>
+
+    <section class="controls">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Enter product name"
+      />
+
+      <select id="categoryFilter">
+        <option value="All">All</option>
+        <option value="Accessories">Accessories</option>
+        <option value="Displays">Displays</option>
+        <option value="Storage">Storage</option>
+        <option value="Components">Components</option>
+      </select>
+
+      <button id="searchBtn">Search</button>
+      <button id="resetBtn">Reset</button>
+    </section>
+
+    <section class="summary">
+      <div class="summary-card">
+        <span class="summary-label">Total Inventory Value</span>
+        <span class="summary-value" id="totalInventoryValue">₱0</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Low-Stock Products</span>
+        <span class="summary-value" id="lowStockCount">0</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Out-of-Stock Products</span>
+        <span class="summary-value" id="outOfStockCount">0</span>
+      </div>
+    </section>
+
+    <p id="noResultsMessage" class="no-results" style="display: none;">
+      No products found
+    </p>
+
+    <main id="productList" class="product-list">
+      <!-- Product cards are rendered here by display.js -->
     </main>
+  </div>
 
-
-    <!-- REQUIRED MODULE -->
-
-    <script
-        type="module"
-        src="js/main.js"
-    ></script>
-
+  <script type="module" src="js/main.js"></script>
 </body>
-
 </html>
