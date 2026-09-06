@@ -7,7 +7,6 @@
 
     <title>Product Inventory Dashboard</title>
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -16,19 +15,14 @@
         rel="stylesheet"
     >
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 
 <body>
 
     <main class="container">
 
-        <!-- =========================
-             HEADER
-             ========================= -->
-
+        <!-- HEADER -->
         <header class="hero">
 
             <div class="hero-decoration decoration-one">
@@ -63,28 +57,17 @@
         </header>
 
 
-        <!-- =========================
-             INVENTORY SUMMARY
-             ========================= -->
+        <!-- SUMMARY -->
+        <section class="summary">
 
-        <section
-            class="summary"
-            aria-label="Inventory Summary"
-        >
-
-            <!-- Total Value -->
-
-            <div class="summary-card inventory-card">
+            <div class="summary-card">
 
                 <div class="summary-icon">
                     💰
                 </div>
 
                 <div class="summary-content">
-
-                    <p>
-                        Total Inventory Value
-                    </p>
+                    <p>Total Inventory Value</p>
 
                     <h2 id="totalInventoryValue">
                         ₱0.00
@@ -93,25 +76,19 @@
                     <span>
                         Current stock value
                     </span>
-
                 </div>
 
             </div>
 
 
-            <!-- Low Stock -->
-
-            <div class="summary-card low-stock-card">
+            <div class="summary-card">
 
                 <div class="summary-icon">
                     📦
                 </div>
 
                 <div class="summary-content">
-
-                    <p>
-                        Low-Stock Products
-                    </p>
+                    <p>Low-Stock Products</p>
 
                     <h2 id="lowStockCount">
                         0
@@ -120,25 +97,19 @@
                     <span>
                         Needs attention
                     </span>
-
                 </div>
 
             </div>
 
 
-            <!-- Out of Stock -->
-
-            <div class="summary-card out-stock-card">
+            <div class="summary-card">
 
                 <div class="summary-icon">
                     ⚠️
                 </div>
 
                 <div class="summary-content">
-
-                    <p>
-                        Out-of-Stock Products
-                    </p>
+                    <p>Out-of-Stock Products</p>
 
                     <h2 id="outOfStockCount">
                         0
@@ -147,7 +118,6 @@
                     <span>
                         Currently unavailable
                     </span>
-
                 </div>
 
             </div>
@@ -155,16 +125,12 @@
         </section>
 
 
-        <!-- =========================
-             SEARCH AND FILTER
-             ========================= -->
-
+        <!-- SEARCH -->
         <section class="controls">
 
             <div class="controls-heading">
 
                 <div>
-
                     <p class="section-label">
                         INVENTORY MANAGEMENT
                     </p>
@@ -172,7 +138,6 @@
                     <h2>
                         Find a Product 🔎
                     </h2>
-
                 </div>
 
                 <span class="status-badge">
@@ -184,8 +149,7 @@
 
             <div class="control-fields">
 
-                <!-- Search -->
-
+                <!-- SEARCH INPUT -->
                 <div class="field">
 
                     <label for="searchInput">
@@ -210,8 +174,7 @@
                 </div>
 
 
-                <!-- Category -->
-
+                <!-- CATEGORY -->
                 <div class="field">
 
                     <label for="categoryFilter">
@@ -253,8 +216,7 @@
                 </div>
 
 
-                <!-- Buttons -->
-
+                <!-- BUTTONS -->
                 <div class="buttons">
 
                     <button
@@ -280,10 +242,7 @@
         </section>
 
 
-        <!-- =========================
-             PRODUCTS
-             ========================= -->
-
+        <!-- PRODUCTS -->
         <section class="products-section">
 
             <div class="section-title">
@@ -309,7 +268,6 @@
                     class="product-count"
                     id="productCount"
                 >
-
                     <span>📦</span>
 
                     <strong>
@@ -317,13 +275,12 @@
                     </strong>
 
                     <span>✨</span>
-
                 </div>
 
             </div>
 
 
-            <!-- No Results -->
+            <!-- NO RESULTS -->
 
             <div
                 id="noResultsMessage"
@@ -346,7 +303,7 @@
             </div>
 
 
-            <!-- Product List -->
+            <!-- PRODUCT LIST -->
 
             <div
                 id="productList"
@@ -356,9 +313,7 @@
         </section>
 
 
-        <!-- =========================
-             FOOTER
-             ========================= -->
+        <!-- FOOTER -->
 
         <footer>
 
@@ -367,9 +322,7 @@
             </div>
 
             <p>
-                Made with
-                <strong>♡</strong>
-                by Alodiaz
+                Made with <strong>♡</strong> by Alodiaz
             </p>
 
             <span>
@@ -381,7 +334,7 @@
     </main>
 
 
-    <!-- JavaScript Module -->
+    <!-- REQUIRED MODULE -->
 
     <script
         type="module"
