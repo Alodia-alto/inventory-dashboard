@@ -1,81 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Inventory Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Inventory Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header class="site-header">
-    <div class="site-header__inner">
-      <p class="site-header__eyebrow">ITP10 — Event-Driven Programming</p>
-      <h1 class="site-header__title">Product Inventory Dashboard</h1>
-      <p class="site-header__subtitle">Search, filter, and track stock across the catalog.</p>
-    </div>
-  </header>
+    <main class="container">
 
-  <main class="dashboard">
+        <!-- Header -->
+        <header class="hero">
+            <div class="sparkle sparkle-one">✦</div>
+            <div class="sparkle sparkle-two">♡</div>
 
-    <section class="summary" aria-label="Inventory summary">
-      <div class="summary__card summary__card--value">
-        <span class="summary__label">Total Inventory Value</span>
-        <span class="summary__figure" id="totalInventoryValue">₱0</span>
-      </div>
-      <div class="summary__card summary__card--low">
-        <span class="summary__label">Low-Stock Products</span>
-        <span class="summary__figure" id="lowStockCount">0</span>
-      </div>
-      <div class="summary__card summary__card--out">
-        <span class="summary__label">Out-of-Stock Products</span>
-        <span class="summary__figure" id="outOfStockCount">0</span>
-      </div>
-    </section>
+            <div class="icon">🛍️</div>
 
-    <section class="controls" aria-label="Search and filter controls">
-      <div class="controls__field">
-        <label for="searchInput">Search by name</label>
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Enter product name"
-          autocomplete="off"
-        />
-      </div>
+            <p class="eyebrow">
+                ITP10 • EVENT-DRIVEN PROGRAMMING
+            </p>
 
-      <div class="controls__field">
-        <label for="categoryFilter">Category</label>
-        <select id="categoryFilter">
-          <option value="All">All</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Displays">Displays</option>
-          <option value="Storage">Storage</option>
-          <option value="Components">Components</option>
-        </select>
-      </div>
+            <h1>Product Inventory Dashboard</h1>
 
-      <div class="controls__actions">
-        <button type="button" id="searchBtn">Search</button>
-        <button type="button" id="resetBtn" class="btn-secondary">Reset</button>
-      </div>
-    </section>
+            <p class="subtitle">
+                A simple and cute way to manage your product inventory ♡
+            </p>
+        </header>
 
-    <section class="results" aria-label="Product results">
-      <p id="noResultsMessage" class="no-results" style="display: none;">No products found</p>
-      <div id="productList" class="product-list"></div>
-    </section>
 
-  </main>
+        <!-- Summary -->
+        <section class="summary">
 
-  <footer class="site-footer">
-    <p>Laboratory Activity #4 — Modular JavaScript Application</p>
-    <p>Created by an IT student · Universidad de Dagupan, School of Information Technology Education</p>
-  </footer>
+            <article class="summary-card">
 
-  <script type="module" src="main.js"></script>
+                <span class="summary-icon">💰</span>
+
+                <div>
+                    <p>Total Inventory Value</p>
+                    <h2 id="totalInventoryValue">₱0.00</h2>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <span class="summary-icon">📦</span>
+
+                <div>
+                    <p>Low-Stock Products</p>
+                    <h2 id="lowStockCount">0</h2>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <span class="summary-icon">⚠️</span>
+
+                <div>
+                    <p>Out-of-Stock Products</p>
+                    <h2 id="outOfStockCount">0</h2>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- Search and Filter -->
+        <section class="controls">
+
+            <div class="field">
+
+                <label for="searchInput">
+                    Search Product
+                </label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Enter product name"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="categoryFilter">
+                    Category
+                </label>
+
+                <select id="categoryFilter">
+
+                    <option value="All">All</option>
+
+                    <option value="Accessories">
+                        Accessories
+                    </option>
+
+                    <option value="Displays">
+                        Displays
+                    </option>
+
+                    <option value="Storage">
+                        Storage
+                    </option>
+
+                    <option value="Components">
+                        Components
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <button
+                    type="button"
+                    id="searchBtn"
+                    class="btn primary"
+                >
+                    🔎 Search
+                </button>
+
+                <button
+                    type="button"
+                    id="resetBtn"
+                    class="btn secondary"
+                >
+                    ↻ Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Product List -->
+        <section class="products-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        OUR PRODUCTS
+                    </p>
+
+                    <h2>
+                        Inventory List <span>♡</span>
+                    </h2>
+
+                </div>
+
+                <span class="cute-badge">
+                    Stay organized ✨
+                </span>
+
+            </div>
+
+
+            <!-- Required no-results message -->
+            <p
+                id="noResultsMessage"
+                class="no-results"
+            >
+                No products found
+            </p>
+
+
+            <!-- Required product list -->
+            <div
+                id="productList"
+                class="product-list"
+            ></div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>Made with ♡ by Alodiaz</p>
+        </footer>
+
+    </main>
+
+
+    <!-- Main JavaScript Module -->
+    <script
+        type="module"
+        src="main.js"
+    ></script>
+
 </body>
 </html>
