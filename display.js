@@ -1,82 +1,220 @@
-// display.js
-// Display module: the only place in the app that touches the DOM.
-// It takes plain data (arrays and numbers) from main.js and renders it.
+import {
+    getStockStatus,
+    calculateTotalInventoryValue,
+    countLowStockProducts,
+    countOutOfStockProducts
+} from "./inventoryUtils.js";
 
-const productListEl = document.getElementById("productList");
-const noResultsMessageEl = document.getElementById("noResultsMessage");
-const totalInventoryValueEl = document.getElementById("totalInventoryValue");
-const lowStockCountEl = document.getElementById("lowStockCount");
-const outOfStockCountEl = document.getElementById("outOfStockCount");
 
-/**
- * Format a raw number as Philippine peso currency for display only.
- * Calculation functions must keep returning raw numbers — formatting happens here.
- * @param {number} amount
- * @returns {string}
- */
-function formatCurrency(amount) {
-  return `₱${amount.toLocaleString("en-PH")}`;
+// Format currency only for display
+
+const formatCurrency = (value) => {
+
+    return new Intl.NumberFormat(
+        "en-PH",
+        {
+            style: "currency",
+            currency: "PHP",
+            minimumFractionDigits: 2
+        }
+    ).format(value);
+
+};
+
+
+// Display product cards
+
+export function displayProducts(products) {
+
+    const productList =
+        document.getElementById(
+            "productList"
+        );
+
+    const noResultsMessage =
+        document.getElementById(
+            "noResultsMessage"
+        );
+
+
+    // Clear old cards
+
+    productList.innerHTML = "";
+
+
+    // Show no-results message
+
+    if (products.length === 0) {
+
+        noResultsMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    noResultsMessage.style.display =
+        "none";
+
+
+    // Required forEach loop
+
+    products.forEach((product) => {
+
+        // Required object destructuring
+
+        const {
+            id,
+            name,
+            category,
+            price,
+            stock
+        } = product;
+
+
+        const status =
+            getStockStatus(stock);
+
+
+        const statusClass =
+            status
+                .toLowerCase()
+                .replaceAll(
+                    " ",
+                    "-"
+                );
+
+
+        // Create product card
+
+        const card =
+            document.createElement(
+                "article"
+            );
+
+
+        card.className =
+            "product-card";
+
+
+        card.dataset.id = id;
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div>
+
+                    <h3>${name}</h3>
+
+                    <p class="category">
+                        ${category}
+                    </p>
+
+                </div>
+
+
+                <span
+                    class="status ${statusClass}"
+                >
+                    ${status}
+                </span>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Price
+                    </span>
+
+                    <span class="info-value price">
+                        ${formatCurrency(price)}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Stock Quantity
+                    </span>
+
+                    <span class="info-value">
+                        ${stock}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Product ID
+                    </span>
+
+                    <span class="info-value">
+                        #${id}
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        productList.appendChild(card);
+
+    });
+
 }
 
-/**
- * Build one product-card element for a single product.
- * @param {Object} product
- * @param {Function} getStockStatus
- * @returns {HTMLElement}
- */
-function createProductCard(product, getStockStatus) {
-  const { name, category, price, stock } = product;
-  const status = getStockStatus(stock);
-  const statusClass = status.toLowerCase().replace(/\s+/g, "-");
 
-  const card = document.createElement("article");
-  card.className = "product-card";
+// Display inventory summary
 
-  card.innerHTML = `
-    <div class="product-card__header">
-      <h3 class="product-card__name">${name}</h3>
-      <span class="product-card__status product-card__status--${statusClass}">${status}</span>
-    </div>
-    <p class="product-card__category">${category}</p>
-    <div class="product-card__details">
-      <span class="product-card__price">${formatCurrency(price)}</span>
-      <span class="product-card__stock">Stock: ${stock}</span>
-    </div>
-  `;
+export function displaySummary(products) {
 
-  return card;
-}
+    const totalInventoryValue =
+        document.getElementById(
+            "totalInventoryValue"
+        );
 
-/**
- * Render the given products into the product-list area.
- * Shows the "No products found" message when the array is empty.
- * @param {Array<Object>} products
- * @param {Function} getStockStatus - passed in so this module stays decoupled from inventoryUtils
- */
-export function displayProducts(products, getStockStatus) {
-  productListEl.innerHTML = "";
 
-  if (products.length === 0) {
-    noResultsMessageEl.style.display = "block";
-    return;
-  }
+    const lowStockCount =
+        document.getElementById(
+            "lowStockCount"
+        );
 
-  noResultsMessageEl.style.display = "none";
 
-  products.forEach((product) => {
-    const card = createProductCard(product, getStockStatus);
-    productListEl.appendChild(card);
-  });
-}
+    const outOfStockCount =
+        document.getElementById(
+            "outOfStockCount"
+        );
 
-/**
- * Render the summary values: total inventory value, low-stock count, out-of-stock count.
- * @param {number} totalValue
- * @param {number} lowStockCount
- * @param {number} outOfStockCount
- */
-export function displaySummary(totalValue, lowStockCount, outOfStockCount) {
-  totalInventoryValueEl.textContent = formatCurrency(totalValue);
-  lowStockCountEl.textContent = lowStockCount;
-  outOfStockCountEl.textContent = outOfStockCount;
+
+    totalInventoryValue.textContent =
+        formatCurrency(
+            calculateTotalInventoryValue(
+                products
+            )
+        );
+
+
+    lowStockCount.textContent =
+        countLowStockProducts(
+            products
+        );
+
+
+    outOfStockCount.textContent =
+        countOutOfStockProducts(
+            products
+        );
+
 }
