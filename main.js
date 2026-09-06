@@ -1,9 +1,12 @@
-import { products } from "./products.js";
+import { products }
+from "./products.js";
+
 
 import {
     searchProducts,
     filterProductsByCategory
 } from "./inventoryUtils.js";
+
 
 import {
     displayProducts,
@@ -11,9 +14,9 @@ import {
 } from "./display.js";
 
 
-// =========================
-// GET HTML ELEMENTS
-// =========================
+// ========================================
+// SELECT HTML ELEMENTS
+// ========================================
 
 const searchInput =
     document.getElementById(
@@ -39,49 +42,61 @@ const resetBtn =
     );
 
 
-// =========================
+// ========================================
 // UPDATE DASHBOARD
-// =========================
+// ========================================
 
 function updateDashboard() {
 
-    // Search products
-
-    const searchedProducts =
-        searchProducts(
-            products,
-            searchInput.value
-        );
+    let results = products;
 
 
-    // Filter searched products
+    const query =
+        searchInput.value.trim();
 
-    const filteredProducts =
+
+    const category =
+        categoryFilter.value;
+
+
+    // Search by product name
+
+    if (query !== "") {
+
+        results =
+            searchProducts(
+                results,
+                query
+            );
+
+    }
+
+
+    // Filter by category
+
+    results =
         filterProductsByCategory(
-            searchedProducts,
-            categoryFilter.value
+            results,
+            category
         );
 
 
-    // Display results
+    // Display filtered products
 
-    displayProducts(
-        filteredProducts
-    );
+    displayProducts(results);
 
 
-    // Update summary
+    // Summary always represents
+    // the complete inventory
 
-    displaySummary(
-        filteredProducts
-    );
+    displaySummary(products);
 
 }
 
 
-// =========================
+// ========================================
 // SEARCH BUTTON
-// =========================
+// ========================================
 
 searchBtn.addEventListener(
     "click",
@@ -89,9 +104,9 @@ searchBtn.addEventListener(
 );
 
 
-// =========================
+// ========================================
 // CATEGORY FILTER
-// =========================
+// ========================================
 
 categoryFilter.addEventListener(
     "change",
@@ -99,13 +114,13 @@ categoryFilter.addEventListener(
 );
 
 
-// =========================
+// ========================================
 // ENTER KEY SEARCH
-// =========================
+// ========================================
 
 searchInput.addEventListener(
     "keydown",
-    (event) => {
+    function (event) {
 
         if (event.key === "Enter") {
 
@@ -117,42 +132,31 @@ searchInput.addEventListener(
 );
 
 
-// =========================
+// ========================================
 // RESET BUTTON
-// =========================
+// ========================================
 
 resetBtn.addEventListener(
     "click",
-    () => {
+    function () {
 
         searchInput.value = "";
 
-        categoryFilter.value =
-            "All";
+        categoryFilter.value = "All";
 
 
-        displayProducts(
-            products
-        );
+        displayProducts(products);
 
-
-        displaySummary(
-            products
-        );
+        displaySummary(products);
 
     }
 );
 
 
-// =========================
-// INITIAL PAGE LOAD
-// =========================
+// ========================================
+// INITIAL DISPLAY
+// ========================================
 
-displayProducts(
-    products
-);
+displayProducts(products);
 
-
-displaySummary(
-    products
-);
+displaySummary(products);
