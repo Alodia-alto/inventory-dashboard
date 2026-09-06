@@ -1,4 +1,5 @@
 export const products = [
+
     {
         id: 1,
         name: "Wireless Mouse",
@@ -6,6 +7,7 @@ export const products = [
         price: 650,
         stock: 12
     },
+
     {
         id: 2,
         name: "Mechanical Keyboard",
@@ -13,6 +15,7 @@ export const products = [
         price: 1800,
         stock: 5
     },
+
     {
         id: 3,
         name: "24-inch Monitor",
@@ -20,6 +23,7 @@ export const products = [
         price: 7800,
         stock: 3
     },
+
     {
         id: 4,
         name: "1TB SSD",
@@ -27,6 +31,7 @@ export const products = [
         price: 4200,
         stock: 0
     },
+
     {
         id: 5,
         name: "Webcam",
@@ -34,6 +39,7 @@ export const products = [
         price: 1500,
         stock: 8
     },
+
     {
         id: 6,
         name: "16GB RAM",
@@ -41,4 +47,5 @@ export const products = [
         price: 2500,
         stock: 4
     }
+
 ];
