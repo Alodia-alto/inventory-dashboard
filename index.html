@@ -1,80 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Product Inventory Dashboard</title>
 
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 
 <body>
 
     <main class="container">
 
+
+        <!-- ==========================================
+             HERO / HEADER
+             ========================================== -->
+
         <header class="hero">
-            <div class="decor decor-left">✦</div>
-            <div class="decor decor-right">♡</div>
 
-            <div class="logo">🛍️</div>
+            <!-- Cute decorations -->
+            <div class="hero-decoration decoration-one">
+                ✦
+            </div>
 
+            <div class="hero-decoration decoration-two">
+                ♡
+            </div>
+
+
+            <!-- Logo -->
+            <div class="logo">
+                🛍️
+            </div>
+
+
+            <!-- Subject -->
             <p class="eyebrow">
                 ITP10 • EVENT-DRIVEN PROGRAMMING
             </p>
 
-            <h1>Product Inventory Dashboard</h1>
 
+            <!-- Title -->
+            <h1>
+                Product Inventory
+                <span>Dashboard</span>
+            </h1>
+
+
+            <!-- Subtitle -->
             <p class="subtitle">
-                Manage your products easily and cutely ♡
+                Keep track of your products with ease ♡
             </p>
+
+
+            <!-- Badge -->
+            <div class="hero-badge">
+                ✨ Simple • Organized • Efficient
+            </div>
+
         </header>
 
 
-        <!-- INVENTORY SUMMARY -->
 
-        <section class="summary" aria-label="Inventory Summary">
+        <!-- ==========================================
+             INVENTORY SUMMARY
+             ========================================== -->
 
-            <div class="summary-card">
+        <section
+            class="summary"
+            aria-label="Inventory Summary"
+        >
 
-                <div class="summary-icon">💰</div>
 
-                <div>
-                    <p>Total Inventory Value</p>
+            <!-- Total Inventory Value -->
+
+            <div class="summary-card inventory-card">
+
+                <div class="summary-icon">
+                    💰
+                </div>
+
+                <div class="summary-content">
+
+                    <p>
+                        Total Inventory Value
+                    </p>
 
                     <h2 id="totalInventoryValue">
                         ₱0.00
                     </h2>
+
+                    <span>
+                        Current stock value
+                    </span>
+
                 </div>
 
             </div>
 
 
-            <div class="summary-card">
 
-                <div class="summary-icon">📦</div>
+            <!-- Low Stock -->
 
-                <div>
-                    <p>Low-Stock Products</p>
+            <div class="summary-card low-stock-card">
+
+                <div class="summary-icon">
+                    📦
+                </div>
+
+                <div class="summary-content">
+
+                    <p>
+                        Low-Stock Products
+                    </p>
 
                     <h2 id="lowStockCount">
                         0
                     </h2>
+
+                    <span>
+                        Needs attention
+                    </span>
+
                 </div>
 
             </div>
 
 
-            <div class="summary-card">
 
-                <div class="summary-icon">⚠️</div>
+            <!-- Out of Stock -->
 
-                <div>
-                    <p>Out-of-Stock Products</p>
+            <div class="summary-card out-stock-card">
+
+                <div class="summary-icon">
+                    ⚠️
+                </div>
+
+                <div class="summary-content">
+
+                    <p>
+                        Out-of-Stock Products
+                    </p>
 
                     <h2 id="outOfStockCount">
                         0
                     </h2>
+
+                    <span>
+                        Currently unavailable
+                    </span>
+
                 </div>
 
             </div>
@@ -82,80 +171,154 @@
         </section>
 
 
-        <!-- SEARCH AND FILTER -->
+
+        <!-- ==========================================
+             SEARCH AND FILTER
+             ========================================== -->
 
         <section class="controls">
 
-            <div class="field">
 
-                <label for="searchInput">
-                    Search Product
-                </label>
+            <!-- Controls Heading -->
 
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Enter product name"
-                >
+            <div class="controls-heading">
 
-            </div>
+                <div>
+
+                    <p class="section-label">
+                        INVENTORY MANAGEMENT
+                    </p>
+
+                    <h2>
+                        Find a Product 🔎
+                    </h2>
+
+                </div>
 
 
-            <div class="field">
-
-                <label for="categoryFilter">
-                    Category
-                </label>
-
-                <select id="categoryFilter">
-
-                    <option value="All">
-                        All
-                    </option>
-
-                    <option value="Accessories">
-                        Accessories
-                    </option>
-
-                    <option value="Displays">
-                        Displays
-                    </option>
-
-                    <option value="Storage">
-                        Storage
-                    </option>
-
-                    <option value="Components">
-                        Components
-                    </option>
-
-                </select>
+                <span class="status-badge">
+                    ● Live Inventory
+                </span>
 
             </div>
 
 
-            <div class="buttons">
 
-                <button
-                    type="button"
-                    id="searchBtn"
-                    class="btn search-btn"
-                >Search</button>
+            <!-- Control Fields -->
 
-                <button
-                    type="button"
-                    id="resetBtn"
-                    class="btn reset-btn"
-                >Reset</button>
+            <div class="control-fields">
+
+
+                <!-- Search Product -->
+
+                <div class="field">
+
+                    <label for="searchInput">
+                        Search Product
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔎
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Enter product name..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Category -->
+
+                <div class="field">
+
+                    <label for="categoryFilter">
+                        Category
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🏷️
+                        </span>
+
+                        <select id="categoryFilter">
+
+                            <option value="All">
+                                All Categories
+                            </option>
+
+                            <option value="Accessories">
+                                Accessories
+                            </option>
+
+                            <option value="Displays">
+                                Displays
+                            </option>
+
+                            <option value="Storage">
+                                Storage
+                            </option>
+
+                            <option value="Components">
+                                Components
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Buttons -->
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        id="searchBtn"
+                        class="search-btn"
+                    >
+                        🔎 Search
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="resetBtn"
+                        class="reset-btn"
+                    >
+                        ↻ Reset
+                    </button>
+
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- PRODUCT LIST -->
+
+        <!-- ==========================================
+             PRODUCT SECTION
+             ========================================== -->
 
         <section class="products-section">
+
+
+            <!-- Section Heading -->
 
             <div class="section-title">
 
@@ -166,42 +329,107 @@
                     </p>
 
                     <h2>
-                        Inventory List <span>♡</span>
+                        Inventory List ♡
                     </h2>
+
+                    <p class="section-description">
+                        Browse and monitor your available products.
+                    </p>
 
                 </div>
 
-                <span class="badge">
-                    6 Products ✨
-                </span>
+
+                <!-- Product Count -->
+
+                <div class="product-count">
+
+                    <span>
+                        📦
+                    </span>
+
+                    <strong>
+                        6 Products
+                    </strong>
+
+                    <span>
+                        ✨
+                    </span>
+
+                </div>
 
             </div>
 
 
-            <p
+
+            <!-- ==========================================
+                 NO RESULTS MESSAGE
+                 ========================================== -->
+
+            <div
                 id="noResultsMessage"
                 class="no-results"
-            >No products found</p>
+            >
 
+                <div class="no-results-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    No products found
+                </h3>
+
+                <p>
+                    Try searching for another product or category.
+                </p>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 PRODUCT LIST
+                 ========================================== -->
 
             <div
                 id="productList"
                 class="product-list"
             ></div>
 
+
         </section>
 
 
+
+        <!-- ==========================================
+             FOOTER
+             ========================================== -->
+
         <footer>
+
+            <div class="footer-heart">
+                ♡
+            </div>
+
             <p>
-                Made with ♡ by Alodiaz
+                Made with
+                <strong>♡</strong>
+                by Alodiaz
             </p>
+
+            <span>
+                ITP10 • Event-Driven Programming
+            </span>
+
         </footer>
+
 
     </main>
 
 
-    <!-- IMPORTANT: MODULE SCRIPT -->
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
 
     <script
         type="module"
@@ -209,4 +437,5 @@
     ></script>
 
 </body>
+
 </html>
