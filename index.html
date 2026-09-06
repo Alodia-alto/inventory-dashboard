@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Inventory Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="hero">
+            <div class="decor decor-left">✦</div>
+            <div class="decor decor-right">♡</div>
+
+            <div class="logo">🛍️</div>
+
+            <p class="eyebrow">
+                ITP10 • EVENT-DRIVEN PROGRAMMING
+            </p>
+
+            <h1>Product Inventory Dashboard</h1>
+
+            <p class="subtitle">
+                Manage your products easily and cutely ♡
+            </p>
+        </header>
+
+
+        <!-- INVENTORY SUMMARY -->
+
+        <section class="summary" aria-label="Inventory Summary">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">💰</div>
+
+                <div>
+                    <p>Total Inventory Value</p>
+
+                    <h2 id="totalInventoryValue">
+                        ₱0.00
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">📦</div>
+
+                <div>
+                    <p>Low-Stock Products</p>
+
+                    <h2 id="lowStockCount">
+                        0
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">⚠️</div>
+
+                <div>
+                    <p>Out-of-Stock Products</p>
+
+                    <h2 id="outOfStockCount">
+                        0
+                    </h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH AND FILTER -->
+
+        <section class="controls">
+
+            <div class="field">
+
+                <label for="searchInput">
+                    Search Product
+                </label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Enter product name"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="categoryFilter">
+                    Category
+                </label>
+
+                <select id="categoryFilter">
+
+                    <option value="All">
+                        All
+                    </option>
+
+                    <option value="Accessories">
+                        Accessories
+                    </option>
+
+                    <option value="Displays">
+                        Displays
+                    </option>
+
+                    <option value="Storage">
+                        Storage
+                    </option>
+
+                    <option value="Components">
+                        Components
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    type="button"
+                    id="searchBtn"
+                    class="btn search-btn"
+                >
+                    🔎 Search
+                </button>
+
+                <button
+                    type="button"
+                    id="resetBtn"
+                    class="btn reset-btn"
+                >
+                    ↻ Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCT LIST -->
+
+        <section class="products-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="section-label">
+                        OUR PRODUCTS
+                    </p>
+
+                    <h2>
+                        Inventory List <span>♡</span>
+                    </h2>
+
+                </div>
+
+                <span class="badge">
+                    6 Products ✨
+                </span>
+
+            </div>
+
+
+            <p
+                id="noResultsMessage"
+                class="no-results"
+            >
+                No products found
+            </p>
+
+
+            <div
+                id="productList"
+                class="product-list"
+            ></div>
+
+        </section>
+
+
+        <footer>
+            <p>
+                Made with ♡ by Alodiaz
+            </p>
+        </footer>
+
+    </main>
+
+
+    <!-- IMPORTANT: MODULE SCRIPT -->
+
+    <script
+        type="module"
+        src="main.js"
+    ></script>
+
+</body>
+</html>
